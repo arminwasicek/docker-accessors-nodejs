@@ -5,6 +5,11 @@ DOCKERIMAGE="hellospencer/nodejs-accessor"
 accessors:
 	svn co --non-interactive --trust-server-cert ${ACCESSOR_REPO}
 
-build: accessors
+build: ${DOCKERIMAGE}
+	
+${DOCKERIMAGE}:	accessors
 	docker build -t ${DOCKERIMAGE} .
+
+test: 
+	@docker run --rm -it ${DOCKERIMAGE} nodeHostInvoke test/auto/Stop
 
