@@ -10,6 +10,9 @@ build: ${DOCKERIMAGE}
 ${DOCKERIMAGE}:	accessors
 	docker build -t ${DOCKERIMAGE} .
 
-test: 
+test1: 
 	@docker run --rm -it ${DOCKERIMAGE} nodeHostInvoke test/auto/Stop
+
+test2:
+	@docker run --rm -it ${DOCKERIMAGE} nodeHostInvoke -t 3000 -js /root/accessor.js
 
