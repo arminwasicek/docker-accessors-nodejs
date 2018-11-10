@@ -1,0 +1,3 @@
+#!/bin/bash
+node /root/node_modules/hosts/node/nodeHostShell.js "$@"
+

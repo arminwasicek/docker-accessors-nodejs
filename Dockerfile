@@ -2,10 +2,9 @@ FROM node:11.1.0-slim
 
 MAINTAINER Armin Wasicek (armin.wasicek@avast.com)
 
-RUN npm install @terraswarm/accessors && \
-    echo 'alias nodeHostInvoke="node /node_modules/@terraswarm/accessors/hosts/node/nodeHostInvoke.js"' >> ~/.bashrc && \
-    echo 'alias nodeHostShell="node /node_modules/@terraswarm/accessors/hosts/node/nodeHostShell.js"' >> ~/.bashrc
+ADD accessors/web /root/node_modules
 
-RUN apt-get install -y vi
-
+COPY ./nodeHostInvoke /usr/local/bin/nodeHostInvoke
+COPY ./nodeHostShell /usr/local/bin/nodeHostShell
 COPY ./accessor.js /root/accessor.js
+
